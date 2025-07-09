@@ -1,0 +1,22 @@
+name: PR Checker
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run basic check
+        run: echo "✅ Pull Request received! Running checks..."
+
+      - name: Show PR metadata
+        run: |
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Author: ${{ github.actor }}"
+          echo "Branch: ${{ github.head_ref }}"
